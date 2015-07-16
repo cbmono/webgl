@@ -243,3 +243,16 @@ a {
 @media screen and (max-width: 42em) {
   .site-footer {
     font-size: 0.9rem; } }
+
+/* CUSOTM */
+.page-header h2 span {
+  color: #fff;
+  font-size: 13px;
+}
+.page-header h2 span a {
+  color: inherit;
+  text-decoration: underline;
+}
+.page-header h2 span a:hover {
+  text-decoration: none;
+}
