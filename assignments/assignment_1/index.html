@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+    <title>Assignment #1</title>
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
+      attribute vec4 vPosition;
+      uniform float theta;
+      // uniform float theta;
+
+      void
+      main()
+      {
+          // gl_Position = vPosition;
+          // x′=xcosθ−ysinθ
+          //
+          // y′=xsinθ+ycosθ
+
+          float newAngle = theta * sqrt(vPosition.x * vPosition.x + vPosition.y * vPosition.y);
+
+          float s = sin(newAngle);
+          float c = cos(newAngle);
+
+          gl_Position.x = -s * vPosition.y + c * vPosition.x;
+          gl_Position.y =  s * vPosition.x + c * vPosition.y;
+          gl_Position.z = 0.0;
+          gl_Position.w = 1.0;
+      }
+    </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+      precision mediump float;
+
+      void
+      main()
+      {
+          gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );
+      }
+    </script>
+
+    <script type="text/javascript" src="../../common/webgl-utils.js"></script>
+    <script type="text/javascript" src="../../common/initShaders.js"></script>
+    <script type="text/javascript" src="../../common/MV.js"></script>
+    <script type="text/javascript" src="assignment_1.js"></script>
+  </head>
+
+  <body>
+
+    <div>
+      Twist Angle:
+      <input id="twist_angle" type="range" min="-360" max="360" step="5" value="0" />
+      <span id="twist_angle_val">0</span>&deg;
+    </div>
+
+    <div>
+      Subdivisions (Ttessellation):
+      <input id="subdivisions" type="range" min="1" max="7" step="1" value="1" />
+      <span id="subdivisions_val">1</span>
+    </div>
+
+    <canvas id="gl-canvas" width="512" height="512">
+      Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+
+  </body>
+</html>
